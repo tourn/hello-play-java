@@ -20,6 +20,10 @@ public class BakedGoods extends Model {
 
     public String time_to_bake;
 
+    public static void create(BakedGoods good){
+        good.save();
+    }
+
     public static Finder<Long, BakedGoods> find = new Finder<Long,BakedGoods>(BakedGoods.class);
 
 }

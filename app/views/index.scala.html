@@ -1,5 +1,16 @@
-@(message: String)
+@(message: String, goods: List[BakedGoods])
 
-@main("Welcome to Play") {
-    <ul id="bakedgoods"></ul>
-}
+    @main("Welcome to Play") {
+        <ul id="bakedgoods">
+        @goods.map { g =>
+            <li>@g.title -- @g.time_to_bake minutes</li>
+        }
+        </ul>
+
+        <form method="POST" action="@routes.HomeController.addGoods()">
+            <input type="text" name="id"/>
+            <input type="text" name="title"/>
+            <input type="text" name="time_to_bake"/>
+            <button>Add BakedGood</button>
+        </form>
+    }

@@ -1,15 +1,23 @@
 package controllers;
 
+import models.BakedGoods;
 import play.*;
 import play.mvc.*;
+import play.db.*;
 
 import views.html.*;
+
+import java.sql.Connection;
+import java.util.List;
+
+import static play.libs.Json.toJson;
 
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
  */
 public class HomeController extends Controller {
+
 
     /**
      * An action that renders an HTML page with a welcome message.
@@ -19,6 +27,11 @@ public class HomeController extends Controller {
      */
     public Result index() {
         return ok(index.render("Your new application is ready."));
+    }
+
+    public Result getBakedGoods(){
+        List<BakedGoods> goods = BakedGoods.find.all();
+        return ok(toJson(goods));
     }
 
 }

@@ -32,15 +32,24 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
+        return ok(index.render("Your new application is ready.", BakedGoods.find.all(), session("connected")));
+    }
 
-        return ok(index.render("Your new application is ready.", BakedGoods.find.all()));
+    public Result login(){
+        session("connected", "benis");
+        return ok(index.render("Your new application is ready.", BakedGoods.find.all(), session("connected")));
+    }
+
+    public Result logout(){
+        session().clear();
+        return ok(index.render("Your new application is ready.", BakedGoods.find.all(), session("connected")));
     }
 
     public Result addGoods(){
         Form<BakedGoods> goodsForm = formFactory.form(BakedGoods.class);
         BakedGoods good = goodsForm.bindFromRequest().get();
         BakedGoods.create(good);
-        return ok(index.render("Your new application is ready.", BakedGoods.find.all()));
+        return ok(index.render("Your new application is ready.", BakedGoods.find.all(), session("connected")));
     }
 
     public Result getBakedGoods() {

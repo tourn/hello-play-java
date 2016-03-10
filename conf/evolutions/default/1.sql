@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table baked_goods (
-  id                        bigserial not null,
+  id                        serial not null,
   title                     varchar(255),
   time_to_bake              varchar(255),
   constraint pk_baked_goods primary key (id))

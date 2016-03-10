@@ -18,6 +18,7 @@ public class BakedGoods extends Model {
     @Constraints.Required
     public String title;
 
+    @Basic
     public String time_to_bake;
 
     public static void create(BakedGoods good){
